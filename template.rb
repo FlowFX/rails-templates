@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
-# template.rb
 # https://guides.rubyonrails.org/rails_application_templates.html
 # https://www.sitepoint.com/rails-application-templates-real-world/
+
+# Add the current directory to the path Thor uses to look up files
+def source_paths
+  Array(super) + [__dir__]
+end
 
 ## BUILDING a new Gemfil
 remove_file 'Gemfile'
@@ -56,6 +60,10 @@ gem_group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
+
+# Use my own .gitignore file
+remove_file '.gitignore'
+copy_file '.gitignore'
 
 after_bundle do
   # We're using RSpec
